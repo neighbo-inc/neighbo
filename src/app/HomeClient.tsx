@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxV8gRbLGD6XGLQGgAkG8GCbeLXXQFcfh5gL6WN3tzHOG0Df7l3iZldFAO38atSIpo/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxQKTZS9C4lCPbke_7MeHNv4HCXXXlZ9_7EfuuyKwAZzE4oRyiPOsLk7mX8l4Xj3sI/exec";
 
 export default function HomeClient() {
   const [email, setEmail] = useState("");
