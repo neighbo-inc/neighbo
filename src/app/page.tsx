@@ -76,7 +76,7 @@ export default function HomePage() {
               </div>
               <div className="absolute inset-0 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl blur-lg opacity-50 animate-pulse"></div>
             </div>
-            <span className="text-4xl font-bold text-white">neighbo</span>
+            <span className="text-4xl font-bold text-white">Neighbo</span>
           </motion.div>
 
           <motion.div
