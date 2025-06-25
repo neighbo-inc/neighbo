@@ -72,7 +72,7 @@ export default function HomePage() {
           >
             <div className="relative">
               <div className="w-12 h-12 bg-gradient-to-br from-white to-gray-200 rounded-xl flex items-center justify-center shadow-lg">
-                <Image src="/favicon.png" alt="neighbo logo" width={28} height={28} className="w-7 h-7" />
+                <Image src="/neighbo/favicon.png" alt="neighbo logo" width={28} height={28} className="w-7 h-7" />
               </div>
               <div className="absolute inset-0 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl blur-lg opacity-50 animate-pulse"></div>
             </div>

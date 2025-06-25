@@ -13,10 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "neighbo – Discover Your Neighborhood",
+  title: "Neighbo – Discover Your Neighborhood",
   description: "Explore curated trails, discover hidden gems, and connect with your local community like never before.",
   icons: {
-    icon: "/favicon.png",
+    icon: "/neighbo/favicon.png",
   },
 };
 
