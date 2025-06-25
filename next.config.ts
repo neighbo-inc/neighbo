@@ -7,8 +7,6 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: isProd ? '/neighbo' : '', 
-  assetPrefix: isProd ? '/neighbo/' : '',
   trailingSlash: true,
 };
 
