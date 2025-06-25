@@ -7,8 +7,29 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
 
+const GOOGLE_SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "";
+
 export default function HomeClient() {
   const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setStatus("sending");
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ email }),
+      });
+      setStatus("ok");
+      setEmail("");
+    } catch (err) {
+      setStatus("error");
+    }
+  };
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-gray-900">
@@ -111,30 +132,23 @@ export default function HomeClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <div className="relative">
-              <div className="flex gap-3">
-                <div className="relative flex-1">
-                  <Input
-                    type="email"
-                    placeholder="Enter your email for early access"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="h-14 text-lg px-6 bg-white/10 backdrop-blur-sm border-teal-500/30 text-white placeholder:text-gray-400 focus:border-teal-400 focus:ring-teal-400/20"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-teal-500/5 to-cyan-500/5 rounded-md blur-xl pointer-events-none"></div>
-                </div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button
-                    size="lg"
-                    className="h-14 px-8 text-lg bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 border-0 shadow-lg shadow-teal-500/25"
-                  >
-                    Join Waitlist
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </motion.div>
-              </div>
-              <p className="text-gray-400 mt-4 text-lg">Be the first to explore your neighborhood</p>
-            </div>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <Input
+                type="email"
+                required
+                placeholder="Enter your email for early access"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                className="h-14 text-lg px-6 bg-white/10 backdrop-blur-sm border-teal-500/30 text-white placeholder:text-gray-400 focus:border-teal-400 focus:ring-teal-400/20"
+              />
+              <Button type="submit" size="lg" disabled={status === "sending"} className="h-14 px-8 text-lg bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 border-0 shadow-lg shadow-teal-500/25">
+                {status === "idle" && <>Join Waitlist <ArrowRight className="ml-2 w-5 h-5" /></>}
+                {status === "sending" && "Sending…"}
+                {status === "ok" && "Thanks! 🎉"}
+                {status === "error" && "Error. Retry"}
+              </Button>
+            </form>
+            <p className="text-gray-400 mt-4 text-lg">Be the first to explore your neighborhood</p>
           </motion.div>
           <motion.div
             className="flex items-center justify-center space-x-8 text-gray-300"
