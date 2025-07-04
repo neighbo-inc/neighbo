@@ -187,9 +187,6 @@ export default function HomeClient() {
           ))}
         </div>
       </div>
-      <footer className="w-full text-center py-6">
-        <p className="text-gray-500 text-sm">&copy; 2025 Neighbo, Inc. Made with ❤️ for local communities.</p>
-      </footer>
     </div>
   );
 } 

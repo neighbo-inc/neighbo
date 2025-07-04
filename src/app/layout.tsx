@@ -21,6 +21,9 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         {children}
+        <footer className="absolute w-full text-center py-6 bottom-0">
+          <p className="text-gray-500 text-sm">&copy; 2025 Neighbo, Inc. Made with ❤️ for local communities.</p>
+        </footer>
       </body>
     </html>
   );
